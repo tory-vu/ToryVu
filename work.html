@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Works</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="works-page">
+
+    <!-- Thanh menu cố định trên cùng -->
+   <nav class="top-nav">
+            <span class="nav-item"><a href="/aboutme.html" class="scroll-link">About me</a></span>
+            <span class="nav-item"><a href="/index.html" class="scroll-link">Home</a></span>
+            <span class="nav-item"><a href="/aboutme.html" class="scroll-link">Minh Thuy _ Tory Vu</a></span>
+        </nav>
+   <!-- KHU VỰC TIÊU ĐỀ CHÍNH -->
+<div class="portfolio-header-block">
+    <h2 class="portfolio-main-title">PORTFOLIO</h2>
+    <div class="portfolio-divider-line"></div>
+    
+
+</div>
+
+<!-- LƯỚI KHUNG DỰ ÁN SỬ DỤNG FLEXBOX ĐỂ CĂN GIỮA HÀNG CUỐI -->
+<div class="portfolio-flex-layout">
+    
+    <!-- Dự án 1: Character -->
+     
+    <div class="portfolio-grid-item" data-category="character" onclick="openProjectVault('character', 'faye')">
+        <a href="/artwork_chara.html">
+        <div class="grid-image-wrapper">
+            <img src="/character/Charater/witch.jpg" style="opacity:50%;" alt="Character Design">
+        </div>
+        <div class="grid-item-overlay">
+            <span>CHARACTER Design</span>
+        </div>
+        </a>
+    </div>
+
+    <!-- Dự án 2: Poster -->
+    <div class="portfolio-grid-item" data-category="poster" onclick="openProjectVault('poster', 'poster1')">
+        <a href="/artwork_poster.html">
+        <div class="grid-image-wrapper">
+            <img src="./poster/vn.jpg"style="opacity:50%;" alt="Poster Art">
+        </div>
+        <div class="grid-item-overlay">
+            <span>POSTER Artwork</span>
+        </div>
+        </a>
+    </div>
+
+    <!-- Dự án 3: Product Design -->
+    <div class="portfolio-grid-item" data-category="product" onclick="openProjectVault('product', 'pack1')">
+        <a href="/artwork_product.html">
+        <div class="grid-image-wrapper">
+            <img src="/product/san_pham/ramune/final.jpg"style="opacity:50%;" alt="Product Design">
+        </div>
+        <div class="grid-item-overlay">
+            <span>PRODUCT DESIGN</span>
+        </div>
+        </a>
+    </div>
+
+    <!-- Dự án 4: Animation -->
+    <div class="portfolio-grid-item" data-category="animation" onclick="openAnimationPlayer('intro.mp4')">
+        <a href="artwork_animation.html">
+        <div class="grid-image-wrapper placeholder-purple">
+            <img src="/intro cover.jpg" style="opacity:50%;" alt="Animation Play">
+        </div>
+        <div class="grid-item-overlay">
+            <span>ANIMATION PLAY</span>
+        </div></a>
+    </div>
+
+    <!-- Dự án 5: Doodle Art -->
+    <div class="portfolio-grid-item" data-category="doodle" onclick="openProjectVault('doodle', 'doodle1')"><a href="/artwork_doodle.html">
+        <div class="grid-image-wrapper">
+            <img src="/doodle/background/color.jpg"style="opacity:50%;" alt="Doodle Art">
+        </div>
+        <div class="grid-item-overlay">
+            <span>DOODLE ART</span>
+        </div></a>
+    </div>
+
+</div>
+
+    <!-- Nhúng file xử lý logic JS của bạn -->
+    <script src="/po.js"></script>
+</body>
+</html>

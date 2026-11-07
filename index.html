@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio_Home</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="/https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <!-- ĐÃ KHÔI PHỤC: Nhúng font chữ nghệ thuật Cinzel cho tiêu đề -->
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- MÀN HÌNH VIDEO INTRO CHẠY TRƯỚC -->
+    <div id="video-intro-container">
+        <video id="intro-video" autoplay muted playsinline>
+            <source src="/intro.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
+    </div>
+
+    <!-- GIAO DIỆN CHÍNH -->
+    <div id="portfolio-wrapper" class="hidden-content">
+        <nav class="top-nav">
+            <span class="nav-item"><a href="/aboutme.html" class="scroll-link">About me</a></span>
+            <span class="nav-item"><a href="/work.html" class="scroll-link1">ARTWORK</a></span>
+            <span class="nav-item"><a href="/aboutme.html" class="scroll-link">Minh Thuy _ Tory Vu</a></span>
+        </nav>
+
+        <main class="hero-container">
+            <div class="year">2026</div>
+            <h1 class="main-title">PORTFOLIO<span class="sparkle">✦</span></h1>
+        </main>
+
+        <!-- Nhân vật được đặt cố định ở góc phải dưới cùng, xóa hết khung vòm -->
+        <div class="character-avatar" id="character-avatar">
+            <div class="glasses"></div>
+        </div>
+
+        <!-- Phần chân trang chứa thông tin liên hệ ở góc trái dưới cùng -->
+        <footer class="footer-nav">
+            <a href="mailto:vdmthuy@gmail.com" class="contact-link">vdmthuy@gmail.com</a>
+        </footer>
+    </div>
+
+    <script src="/po.js"></script>
+</body>
+</html>

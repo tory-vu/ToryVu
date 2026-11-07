@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Design Project - Detail</title>
+    <!-- Nhúng chung file style.css để giữ hiệu ứng nền chấm bi tím hồng của bạn -->
+    <link rel="stylesheet" href="/style.css">
+    <title>Book Design Project - Detail</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <!-- ĐÃ KHÔI PHỤC: Nhúng font chữ nghệ thuật Cinzel cho tiêu đề -->
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+<nav class="top-nav">
+            <span class="nav-item"><a href="/aboutme.html" class="scroll-link">About me</a></span>
+            <span class="nav-item"><a href="/work.html" class="scroll-link1">ARTWORK</a></span>
+            <span class="nav-item"><a href="/aboutme.html" class="scroll-link">Minh Thuy _ Tory Vu</a></span>
+        </nav>
+<div class="detail-container"> 
+
+    <!-- Nút quay lại và Tiêu đề nằm ở hàng trên cùng -->
+    <a href="/artwork_product.html" class="btn-back">← BACK TO PRODUCTS</a><br>
+    <a href="/work.html" class="btn-back">← BACK TO WORKS</a>
+    <h1 class="project-title">BOOK DESIGN</h1>
+    
+    <!-- Book -->
+    <div class="detail-workspace">
+        
+        <!-- CỘT BÊN TRÁI: Khối chứa ảnh được thu nhỏ lại gọn gàng -->
+        <div class="img-box">
+            <img src="/product/book/12.jpg" alt="Book Design Showcase">
+            <div class="detail-thumb-scroll-wrap">
+                <div class="detail-thumb-stream">
+                <img src="/product/book/12.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 1">
+                <img src="/product/book/1.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 2">
+                <img src="/product/book/2.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 3">
+                <img src="/product/book/3.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 4">
+                <img src="/product/book/4.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 5">
+                <img src="/product/book/5.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 6">
+                <img src="/product/book/6.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 7">
+                <img src="/product/book/7.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 8">
+                <img src="/product/book/8.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 9">
+                <img src="/product/book/9.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 10">
+                <img src="/product/book/10.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 11">
+                <img src="/product/book/11.jpg" class="detail-thumb-node" data-index="1"  active" onclick="switchDetailAsset(this)" alt="Sketch 12">                
+               
+                </div>
+         </div>
+        </div>
+        <!-- CỘT BÊN PHẢI: Khối để bạn tự do viết nội dung chữ giới thiệu -->
+        <div class="info-box-right">
+            <div class="info-content-segment">
+                <h3>Hành trình chữa lành</h3>
+                <div class ="para"><p>
+                   a book about the journey of healing and self-discovery, exploring from two little travelers. One is blind
+                </p>
+                </div>
+            </div>
+
+            <div class="info-content-segment" style="margin-top: 25px;">
+                <h3>Techniques</h3>
+            <div class ="pa"><p>
+                use procreate to draw and canva to add text and layout, then print it out to make a real book
+                </p>
+                </div>   
+            </div>
+        </div>
+        </div>
+</div>
+<div>
+    <iframe src="/product/book/Cozy Bed.pdf" width="90%" height="600px" style="display: block; margin: 0 auto;"></iframe>
+</div>
+
+    <!-- Kết thúc -->
+</div>
+<button id="back-to-top-btn" title="Go to top">▲</button>
+<script src="/po.js"></script>
+</body>
+</html>

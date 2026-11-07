@@ -1,0 +1,1044 @@
+/* ========================================================
+   1. CẤU HÌNH TOÀN CỤC & HÌNH NỀN GRADIENT CHẤM BI
+   ======================================================== */
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #e7b5df; 
+    overflow-x: hidden;
+    position: relative;
+    background: 
+        radial-gradient(circle, rgba(255, 244, 191, 0.268) 15%, transparent 20%) 0 0 / 16px 16px,
+        radial-gradient(circle, rgba(255, 244, 191, 0.256) 15%, transparent 20%) 8px 8px / 16px 16px,
+        linear-gradient(to bottom, #5003C0 0%, #f3a3ff 50%, #e7b5df 100%);
+    background-blend-mode: normal, normal, normal;
+}
+
+@font-face {
+    font-family: "Custom";
+    src: url("fanta-font.ttf") format("truetype"); 
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ========================================================
+   2. MÀN HÌNH VIDEO INTRO CHUYỂN CẢNH NHANH (KHÔNG SMOOTH)
+   ======================================================== */
+#video-intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999; 
+    background: radial-gradient(circle, rgba(255, 244, 191, 0.268) 15%, transparent 20%) 0 0 / 16px 16px,
+                radial-gradient(circle, rgba(255, 244, 191, 0.256) 15%, transparent 20%) 8px 8px / 16px 16px,
+                linear-gradient(to bottom, #5003C0 0%, #f3a3ff 50%, #e7b5df 100%);
+    background-blend-mode: normal, normal, normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    mix-blend-mode: hard-light; /* Loại bỏ nền đen video gốc */
+}
+
+.hidden-content {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.show-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ========================================================
+   3. THANH MENU TRÊN CÙNG (TOP NAV)
+   ======================================================== */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    font-size: 25px;
+    font-weight: 300;
+    position: fixed;   
+    top: 0;            
+    left: 0;           
+    width: 100%;       
+    z-index: 999;      
+    background: transparent;
+}
+
+.top-nav span, .top-nav .nav-item {
+    flex: 1;
+    font-family: "Custom", sans-serif !important; 
+    text-transform: uppercase; 
+}
+
+.top-nav span:nth-child(1), .top-nav .nav-item:nth-child(1) { text-align: left; }
+.top-nav span:nth-child(2), .top-nav .nav-item:nth-child(2) { text-align: center; }
+.top-nav span:nth-child(3), .top-nav .nav-item:nth-child(3) { text-align: right; }
+
+.top-nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Trạng thái mặc định ban đầu của TẤT CẢ các nút trên thanh menu */
+.top-nav .nav-item a {
+    color: #ffd993 !important; /* Chữ màu vàng cát */
+    text-decoration: none;
+    border: 2px solid #ffd993; /* Khung viền hộp chữ nhật màu vàng cát */
+    border-radius: 12px;       /* Bo góc hộp mềm mại theo ảnh mẫu mới */
+    background-color: rgba(255, 147, 246, 0.08); /* Nền trong suốt mờ ảo */
+    display: inline-block;
+    transition: all 0.15s ease-in-out; /* Tạo chuyển động mượt mà khi rê chuột vào */
+}
+/* HIỆU ỨNG KHI DI CHUỘT VÀO (HOVER) & KHI ĐƯỢC NHẤN (CLICKED-ACTIVE) */
+.top-nav .nav-item a:hover,
+.top-nav .nav-item a.clicked-active {
+    background-color: #ffd993 !important; /* Phủ kín màu nền vàng cát toàn bộ lòng hộp */
+    color: #5d00b4 !important;            /* Chữ tự động chuyển sang màu tím đậm tương phản */
+    border: 2px solid #5d00b4 !important; /* Đổi viền bọc sang nét đơn màu đen sắc sảo giống ảnh mẫu */
+    transform: translateY(-1px);          /* Nhấc nhẹ nút lên tạo cảm giác tương tác sinh động */
+}
+
+/* ========================================================
+   4. NỘI DUNG CHÍNH (HERO CONTAINER)
+   ======================================================== */
+.hero-container {
+    text-align: center;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 100px; 
+}
+
+.year {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #5d00b4;
+}
+
+.main-title {
+    font-size: 7rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff4bf; 
+    position: relative;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+    margin-top: -20px; 
+}
+
+.sparkle {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 2rem;
+    color: #fff4bf;
+    animation: blink 2s infinite ease-in-out;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ========================================================
+   5. THIẾT KẾ MỚI: NHÂN VẬT GÓC PHẢI DƯỚI (XÓA BỎ KHUNG VÒM ĐEN)
+   ======================================================== */
+.character-avatar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    
+    /* ĐÃ SỬA: Thu nhỏ lại một chút để không che khuất chữ PORTFOLIO */
+    width: 35vw;       
+    height: 40vh;      
+    z-index: 100;
+    cursor: pointer;
+    
+    /* Đảm bảo ảnh nhân vật bám sát mép phải và mép dưới cùng màn hình */
+    background-position: right bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    /* Lọc bỏ nền trắng cho ảnh JPG */
+    mix-blend-mode: multiply; 
+    
+    /* Hiệu ứng lặp lại đổi ảnh thổi sao liên tục */
+    animation: switchCharacter 3s infinite steps(1); 
+}
+@keyframes switchCharacter {
+    0%, 44%, 100% { background-image: url('thoi1.jpg'); }
+    45%, 95% { background-image: url('thoi2.jpg'); }
+}
+
+/* ========================================================
+   6. HIỆU ỨNG BỤI SAO TỎA SÁNG SIÊU MƯỢT (CHỐNG LAG)
+   ======================================================== */
+.star-particle {
+    position: fixed;
+    color: #fff4bf;
+    font-size: 1.8rem;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    text-shadow: 0 0 10px #fff4bf, 0 0 20px #f3a3ff, 0 0 35px #ffffff;
+    animation: waveAndFly 1.8s forwards ease-out;
+}
+
+@keyframes waveAndFly {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.3) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translate(var(--x-mid), var(--y-mid)) scale(1.4) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x-end), var(--y-end)) scale(0.5) rotate(360deg);
+    }
+}
+
+/* ========================================================
+   7. CHÂN TRANG CỐ ĐỊNH Ở GÓC TRÁI DƯỚI (EMAIL KHÔNG BỊ ĐÈ)
+   ======================================================== */
+.footer-nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 30px 40px;
+    z-index: 99; 
+}
+
+.contact-link {
+    color: #5003C0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid transparent;
+}
+
+.contact-link:hover {
+    border-bottom: 1px solid #e7b5df;
+}
+
+/* ========================================================
+   8. GIAO DIỆN TRANG TÁC PHẨM (WORKS PAGE CHI TIẾT)
+   ======================================================== */
+.works-header {
+    max-width: 1200px;
+    margin: 140px auto 40px auto; 
+    padding: 0 40px;
+    text-align: left; 
+}
+
+.works-subtitle {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #fff4bf;
+    font-weight: bold;
+}
+
+.works-title {
+    font-family: "Custom", sans-serif;
+    font-size: 3.5rem;
+    color: #ffffff;
+    margin: 10px 0;
+    text-shadow: 3px 3px 0px rgba(80, 3, 192, 0.3);
+}
+
+.works-desc {
+    font-size: 1.1rem;
+    color: #ffffff;
+    opacity: 0.8;
+    max-width: 600px;
+}
+
+.works-showcase {
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 0 40px;
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px;
+}
+
+.work-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.feature-large, .feature-wide { grid-column: span 2; }
+
+.work-image-holder {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.work-image-holder img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.work-info {
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.work-category {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: #fff4bf;
+    font-weight: bold;
+}
+
+.work-info h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-top: 5px;
+}
+
+.work-item:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(80, 3, 192, 0.2);
+    border-color: #fff4bf;
+}
+
+.work-item:hover .work-image-holder img {
+    transform: scale(1.03); 
+}
+
+.works-footer {
+    text-align: center;
+    padding: 40px 0 8px 0;
+}
+
+.back-home-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+.back-home-link:hover {
+    background: #ffffff;
+    color: #5003C0;
+}
+
+.active-nav {
+    border-bottom: 2px solid #fff4bf;
+    padding-bottom: 4px;
+}
+
+
+/* Tạo họa tiết lấp đầy khoảng trống ở giữa */
+.hero-container::after {
+    content: "✦ ✧ ✦";
+    display: block;
+    margin-top: 40px;
+    font-size: 1.5rem;
+    color: #fff4bf;
+    letter-spacing: 15px;
+    opacity: 0.6;
+    animation: pulseGlow 3s infinite ease-in-out alternate;
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.3; transform: scale(0.95); text-shadow: 0 0 5px #fff4bf; }
+    100% { opacity: 0.8; transform: scale(1.05); text-shadow: 0 0 15px #fff4bf; }
+}
+
+
+/* Tắt hoàn toàn huy hiệu Powered by Netlify ở góc màn hình */
+.netlify-badge, 
+[id*="netlify-nitro"], 
+div[style*="position: fixed"][style*="z-index: 999999"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* --- CODE CẤU HÌNH CHO TAB CHI TIẾT ẨN / HIỆN --- */
+
+/* Lớp dùng để ẩn giao diện khi chưa được click */
+.hidden-tab {
+    display: none !important;
+}
+
+/* Định dạng cấu trúc trang chi tiết nằm trong Tab 2 */
+.detail-container {
+    max-width: 900px;
+    margin: 120px auto 60px auto;
+    padding: 0 20px;
+    color: #ffffff;
+    animation: fadeIn 0.5s ease; /* Hiệu ứng hiện hình mượt mà */
+}
+
+/* Nút quay lại thiết kế dạng text link trong suốt */
+.btn-back {
+    background: transparent;
+    border: none;
+    color: #fff4bf;
+    font-size: 1.1rem;
+    font-family: "Custom", sans-serif;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 0;
+}
+
+.btn-back:hover {
+    transform: translateX(-5px);
+}
+
+.project-title {
+    font-family: "Custom", sans-serif;
+    font-size: 3rem;
+    color: #fff4bf;
+    margin-bottom: 20px;
+}
+
+.main-showcase img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(80, 3, 192, 0.4);
+    margin-bottom: 40px;
+}
+
+.project-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.story-block h3 {
+    color: #fff4bf;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.story-block p {
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Hiệu ứng mượt mà khi đổi tab */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Thu nhỏ thanh menu lại một chút để lộ khoảng trống viền */
+    width: 92%;       
+    margin: 15px auto; /* Căn giữa và tạo khoảng cách với mép màn hình */
+    padding: 15px 40px;
+    font-size: 25px;
+    font-weight: 300;
+    
+    position: fixed;   
+    top: 0;            
+    left: 0;           
+    right: 0; /* Đảm bảo căn giữa chuẩn xác khi dùng fixed */
+    z-index: 999;      
+    
+    /* HIỆU ỨNG KHUNG XANH MỜ KÍNH (GLASSMORPHISM) */
+    background: rgba(80, 3, 192, 0.4); /* Màu xanh nước biển trong suốt */
+    backdrop-filter: blur(12px);         /* Làm mờ nội dung phía sau khi cuộn trang */
+    -webkit-backdrop-filter: blur(12px); 
+    
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Viền mỏng màu trắng tạo độ bóng */
+    border-radius: 50px;                         /* Bo tròn hai đầu thanh menu thành hình viên thuốc cực xinh */
+    box-shadow: 0 8px 32px rgba(80, 3, 192, 0.15); /* Đổ bóng nhẹ dịu mắt */
+}
+/* Tăng bố cục trang từ 2 cột lên thành 3 cột thu nhỏ đều nhau */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; /* Khoảng cách giữa các ô thoáng đãng */
+    width: 100%;
+}
+
+/* Định dạng chung cho từng ô sản phẩm thu nhỏ */
+.work-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+}
+
+/* KHỐNG CHẾ CHIỀU CAO: Ép khung ảnh thu nhỏ lại không cho phóng to */
+.work-image-holder {
+    width: 100%;
+    height: 220px; /* Cố định chiều cao của ô chứa ảnh */
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+    mix-blend-mode: multiply; /* Giữ màu sắc ảnh gốc, tránh bị mờ nhạt */
+}
+
+.work-image-holder img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* Tự động cắt cúp ảnh vừa vặn tỉ lệ khung, không bị móp méo */
+    transition: transform 0.6s ease;
+}
+
+/* Hủy bỏ hoàn toàn thuộc tính chiếm dụng 2 cột cũ gây to hình */
+.feature-large, .feature-wide {
+    grid-column: unset !important; 
+}
+
+
+/*About me/
+/* ========================================================
+   SỬA LỖI GIAO DIỆN KHỐI ABOUT ME CHỮ BỊ ĐÈ VÀ CHÌM NỀN
+   ======================================================== */
+
+/* Định cấu trúc chiếc hộp nền tối ôm trọn toàn bộ vùng About Me */
+.about-section {
+    background-color: rgba(43, 10, 89, 0.88); /* Tạo lớp nền tím tối mịn tương phản hoàn hảo với chữ vàng */
+    padding: 60px 40px;                         /* Khoảng đệm trên dưới thoáng đãng, chống đè Menu */
+    margin: 160px auto 50px auto;               /* Đẩy khoảng cách top 160px để tách biệt hoàn toàn với thanh Menu fixed */
+    border-radius: 20px;                        /* Bo tròn các góc hộp mềm mại */
+    width: 90%;
+    max-width: 1200px;                          /* Giới hạn độ rộng chuẩn khung container */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Đổ bóng sâu tạo độ nổi khối chuyên nghiệp */
+    border: 1px solid rgba(255, 217, 147, 0.2); /* Tạo đường viền mờ màu vàng cát quanh hộp */
+    box-sizing: border-box;
+}
+
+/* Định dạng toàn bộ tiêu đề chính, tiêu đề phụ và chữ in đậm nổi bần bật màu vàng cát */
+.about-section h2, 
+.about-section h3, 
+.about-section strong {
+    font-family: "Custom", sans-serif !important; /* Đồng bộ phông chữ uốn lượn nghệ thuật gốc của bạn */
+    color: #fff4bf !important;                    /* Màu vàng kem sáng rõ nét, không lo bị chìm */
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.about-section h2 {
+    font-size: 2.8rem;
+    text-align: center;
+    border-bottom: 2px solid #fff4bf;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.about-section h3 {
+    font-size: 1.6rem;
+    margin-top: 10px;
+}
+
+/* Định dạng các đoạn văn bản mô tả lý lịch dễ đọc, rõ chữ */
+.about-section p {
+    color: #ffffff !important;                    /* Ép chữ mô tả sang màu trắng tinh khiết có độ tương phản cao */
+    line-height: 1.7;                             /* Tăng độ giãn dòng chống dính chữ */
+    font-size: 1.15rem;                           /* Tăng kích cỡ chữ vừa vặn tầm mắt */
+    margin-bottom: 20px;
+}
+
+/* Khung lưới chia bố cục hai cột giữa Biography và Skills */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;           /* Chia tỉ lệ vùng chữ rộng hơn vùng kỹ năng */
+    gap: 40px;                                    /* Tạo khoảng trống giữa hai cột chống đè chữ */
+    margin-bottom: 30px;
+}
+
+/* Định dạng các nhãn tag Kỹ năng (Skills & Tools) gọn gàng */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;                              /* Tự động xuống hàng nếu nhiều kỹ năng */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skills-tags span {
+    background-color: #5d00b4;                    /* Màu nền tím đậm đồng bộ thanh menu viên thuốc */
+    color: #ffd993;                               /* Chữ kỹ năng màu vàng kem */
+    border: 1px solid #ffd993;                    /* Khung viền chỉ mảnh bao quanh */
+    padding: 6px 14px;
+    border-radius: 20px;                          /* Bo tròn dạng viên thuốc nhỏ */
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Khung nội dung lý do chọn Game Dev phía dưới cùng */
+.about-vision {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 217, 147, 0.2); /* Vạch ngăn cách mảnh tinh tế */
+}
+
+/* Hỗ trợ hiển thị co giãn mượt mà trên giao diện điện thoại (Responsive) */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;               /* Chuyển thành 1 cột đứng trên màn hình nhỏ */
+        gap: 20px;
+    }
+    .about-section {
+        padding: 30px 20px;
+        margin-top: 120px;
+    }
+    .about-section h2 {
+        font-size: 2.2rem;
+    }
+}
+
+
+/* ========================================================
+   10. work
+   ======================================================== */
+/* ========================================================
+   BỐ CỤC FLEXBOX: TỰ ĐỘNG CĂN GIỮA HÀNG CUỐI CÙNG
+   ======================================================== */
+.portfolio-flex-layout {
+    display: flex;
+    flex-wrap: wrap;       /* Cho phép các thẻ tự động xuống hàng khi hết chỗ */
+    justify-content: center; /* QUAN TRỌNG: Căn các phần tử và hàng cuối ra chính giữa */
+    gap: 30px;             /* Khoảng cách trống giữa các ô tranh */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 80px auto;
+}
+
+/* Định cấu trúc kích thước cố định cho mỗi ô dự án để chia thành 3 cột */
+.portfolio-flex-layout .portfolio-grid-item {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    
+    /* Công thức tính độ rộng chia 3 cột đều trừ đi khoảng cách gap */
+    width: calc((100% - 60px) / 3); 
+    min-width: 300px; /* Độ rộng tối thiểu để không bị bóp nghẹt trên màn hình nhỏ */
+}
+
+.portfolio-flex-layout .portfolio-grid-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Hỗ trợ hiển thị trên thiết bị di động */
+@media (max-width: 900px) {
+    .portfolio-flex-layout .portfolio-grid-item {
+        width: calc((100% - 30px) / 2); /* Chuyển thành 2 cột trên tablet */
+    }
+}
+
+@media (max-width: 650px) {
+    .portfolio-flex-layout .portfolio-grid-item {
+        width: 100%; /* Chuyển thành 1 cột đứng trên điện thoại */
+    }
+}
+/* ========================================================
+   BỐ CỤC LƯỚI MINIMALIST HIỆN ĐẠI THEO ẢNH MẪU
+   ======================================================== */
+
+/* Khối tiêu đề chính giữa */
+.portfolio-header-block {
+    text-align: center;
+    margin: 140px auto 40px auto;
+    width: 100%;
+}
+
+.portfolio-main-title {
+    font-family: "Custom", sans-serif !important;
+    font-size: 2.5rem;
+    color: #fff4bf; /* Màu vàng cát đặc trưng của bạn */
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+}
+
+/* Dấu gạch nét mờ nhỏ dưới tiêu đề giống ảnh mẫu */
+.portfolio-divider-line {
+    width: 40px;
+    height: 2px;
+    background-color: #ffd993;
+    margin: 0 auto 20px auto;
+    opacity: 0.6;
+}
+
+/* Thanh danh mục bộ lọc chữ nhỏ thanh mảnh nằm ngang */
+.category-filters-minimal {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.category-filters-minimal .filter-btn {
+    background: none;
+    border: none;
+    color: #e7b5df; /* Màu xám hồng nhạt nguyên bản */
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+/* Hiệu ứng gạch chân nhỏ khi active hoặc hover giống ảnh mẫu */
+.category-filters-minimal .filter-btn.active,
+.category-filters-minimal .filter-btn:hover {
+    color: #fff4bf !important;
+}
+
+.category-filters-minimal .filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff4bf;
+}
+
+/* KHUNG LƯỚI 3 CỘT CÂN ĐỐI THEO ẢNH MẪU */
+.portfolio-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ép chia chuẩn thành 3 cột đều nhau */
+    gap: 30px;                             /* Khoảng cách trống vừa vặn giữa các bức tranh */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 80px auto;
+}
+
+/* Thẻ bọc từng bức ảnh vuông vắn */
+.portfolio-grid-item {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 4px; /* Bo góc cực nhẹ tạo nét tinh tế hiện đại */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-grid-item:hover {
+    transform: translateY(-5px); /* Nhấc nhẹ khung ảnh lên khi hover */
+}
+
+/* Vùng chứa ảnh kiểm soát tỷ lệ */
+.grid-image-wrapper {
+    width: 100%;
+    height: 240px; /* Chiều cao cố định cân đối tạo khung lưới gọn gàng */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #250b4e;
+}
+
+.grid-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ép ảnh phủ kín lòng khung hình, không bị bóp méo */
+    display: block;
+}
+
+/* Tạo lớp phủ chữ xuất hiện mượt mà khi di chuột vào tranh */
+.grid-item-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(93, 0, 180, 0.85); /* Nền tím mờ phủ lên */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-grid-item:hover .grid-item-overlay {
+    opacity: 1; /* Hiện rõ chữ giới thiệu lên khi di chuột vào */
+}
+
+.grid-item-overlay span {
+    font-family: "Custom", sans-serif;
+    color: #ffd993;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.placeholder-purple {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffd993;
+    font-family: "Custom", sans-serif;
+}
+
+/* Hỗ trợ Responsive co giãn tự động mượt mà trên điện thoại */
+@media (max-width: 900px) {
+    .portfolio-grid-layout {
+        grid-template-columns: repeat(2, 1fr); /* Chuyển thành 2 cột trên máy tính bảng */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-grid-layout {
+        grid-template-columns: 1fr; /* Chuyển thành 1 cột đứng trên điện thoại dọc */
+    }
+    .category-filters-minimal {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+
+
+/*12. artwork charac */
+/* ========================================================
+   BỐ CỤC CHI TIẾT DỰ ÁN: ẢNH BÊN TRÁI - CHỮ BÊN PHẢI
+   ======================================================== */
+
+/* Khung bao bọc lớn căn giữa trang web */
+.detail-container {
+    width: 94%;
+    max-width: 1200px;           /* Mở rộng chiều rộng tối đa của hộp lớn để đủ không gian cho 2 cột */
+    margin: 140px auto 60px auto;/* Đẩy top 140px chống đè navbar, auto để căn giữa */
+    padding: 30px;
+    background-color: rgba(43, 10, 89, 0.75); /* Nền tím tối mịn tương phản */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 217, 147, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+
+/* Tiêu đề và nút căn lề trái đồng bộ */
+.btn-back {
+    display: inline-block;
+    color: #ffd993 !important;
+    text-decoration: none;
+    font-family: "Custom", sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.project-title {
+    font-family: "Custom", sans-serif !important;
+    color: #fff4bf !important;
+    font-size: 2.6rem;
+    margin: 10px 0 30px 0;
+    text-align: left; /* Căn tiêu đề sang bên trái */
+    border-bottom: 2px solid rgba(255, 244, 191, 0.2);
+    padding-bottom: 15px;
+}
+
+/* Vùng không gian làm việc chia làm 2 cột đứng song song */
+.detail-workspace {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Cột trái chứa ảnh rộng hơn một chút so với cột chữ phải */
+    gap: 45px;                         /* Khoảng trống ngăn cách ở giữa 2 cột chống dính chữ vào ảnh */
+    align-items: start;                /* Căn các khối thẳng hàng xuất phát từ đỉnh trên cùng */
+}
+
+/* CỘT BÊN TRÁI: Thu nhỏ và ghim hộp chứa ảnh gọn gàng */
+.detail-workspace .img-box {
+    width: 100%;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 217, 147, 0.1);
+}
+
+.detail-workspace .img-box img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;                 /* Giới hạn chiều cao ảnh vừa tầm mắt nhìn, không bị kéo dài */
+    object-fit: contain;               /* Giữ nguyên vẹn tỷ lệ tranh vẽ gốc không bị bóp méo */
+    display: block;
+}
+
+/* CỘT BÊN PHẢI: Khung chứa thông tin giới thiệu chữ */
+.info-box-right {
+    display: flex;
+    flex-direction: column;
+    text-align: left;                  /* Định dạng văn bản căn lề trái dễ đọc */
+}
+
+/* Kiểu dáng cho tiêu đề mục nhỏ bên phải */
+.info-content-segment h3 {
+    font-family: "Custom", sans-serif !important;
+    color: #fff4bf !important;         /* Màu vàng kem sáng rõ chữ */
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* Kiểu dáng cho đoạn văn bản mô tả giới thiệu */
+.info-content-segment p {
+    color: #ffffff !important;         /* Chuyển chữ mô tả sang màu trắng tương phản cao */
+    line-height: 1.7;                  /* Giãn dòng rộng rãi chống mỏi mắt */
+    font-size: 1.1rem;
+}
+
+/* Hỗ trợ Responsive: Tự động chuyển thành 1 cột đứng khi xem trên điện thoại nhỏ */
+@media (max-width: 850px) {
+    .detail-workspace {
+        grid-template-columns: 1fr;    /* Hủy chia cột, chuyển thành xếp chồng dọc */
+        gap: 30px;
+    }
+    .project-title {
+        text-align: center;
+    }
+    .info-box-right {
+        text-align: center;
+    }
+}
+.para   {
+    width: 500px;
+    height: 300px;
+    action: scroll;
+    overflow: auto;
+}
+.pa {
+    width: 500px;
+    height: 300px;
+    action: scroll;
+    overflow: auto;
+}
+/* ========================================================
+   THANH DANH SÁCH ẢNH NHỎ NẰM NGANG KHỐI CHI TIẾT DỰ ÁN
+   ======================================================== */
+.left-image-gallery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Khoảng cách giữa ảnh to và dải ảnh nhỏ */
+}
+
+.detail-thumb-scroll-wrap {
+    overflow-x: auto; /* Tự động hiện thanh cuộn ngang nếu có vô số hình */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 217, 147, 0.1);
+}
+
+/* Ép các ảnh nhỏ xếp thành 1 hàng ngang duy nhất không bị nhảy dòng */
+.detail-thumb-stream {
+    display: flex;
+    gap: 12px;
+    width: 50px;
+}
+
+.detail-thumb-node {
+    width: 10px;      /* Cỡ ảnh thumbnail vừa vặn thanh cuộn */
+    height: 10px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.5;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hiệu ứng nổi lên và sáng viền vàng cát khi di chuột hoặc được click chọn active */
+.detail-thumb-node:hover,
+.detail-thumb-node.active {
+    opacity: 1;
+    border-color: #ffd993;
+    transform: translateY(-3px);
+}
+
+
+
+/*nút*/
+/* ========================================================
+   TÙY CHỈNH NÚT MŨI TÊN CUỘN MƯỢT VỀ ĐẦU TRANG
+   ======================================================== */
+#back-to-top-btn {
+    display: none;             /* Mặc định ẩn đi, chỉ hiện lên khi người dùng cuộn chuột xuống */
+    position: fixed;           /* Ghim cố định ở một vị trí trên màn hình */
+    bottom: 30px;              /* Cách mép dưới màn hình 30px */
+    right: 30px;               /* Cách mép phải màn hình 30px */
+    z-index: 9999;             /* Đảm bảo luôn nằm trên cùng mọi lớp ảnh và chữ */
+    border: 2px solid #ffd993; /* Khung viền màu vàng cát đồng bộ menu của bạn */
+    outline: none;
+    background-color: #5d00b4; /* Màu nền tím đậm của thanh menu viên thuốc */
+    color: #ffd993;            /* Màu mũi tên vàng cát */
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 50%;        /* Bo tròn hoàn toàn tạo thành hình tròn nhỏ tinh tế */
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hiệu ứng nhuộm kín lòng nền màu vàng cát khi rê chuột vào giống hệt nút navbar */
+#back-to-top-btn:hover {
+    background-color: #ffd993;
+    color: #5d00b4;
+    border-color: #000000;      /* Đường viền đơn màu đen sắc sảo giống ảnh mẫu menu */
+    transform: translateY(-3px);/* Nhấc nhẹ nút lên khi di chuột vào */
+}
